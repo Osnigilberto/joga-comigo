@@ -3,7 +3,6 @@
 Conecte-se com pessoas que amam jogar tanto quanto você. Encontre novos amigos, monte times e divirta-se jogando juntos!
 
 ![Screenshot da Landing Page do Joga Comigo](public/joga-comigo-landing-page.png) 
-*(Crie um screenshot da sua landing page e salve-o como `public/joga-comigo-landing-page.png` para que essa imagem apareça no seu README do GitHub!)*
 
 ## 💬 Sobre o Projeto
 
