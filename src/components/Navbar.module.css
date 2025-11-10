@@ -1,0 +1,237 @@
+.navbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Espaçamento entre logo, menu e direita */
+  padding: 0.75rem 2rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+/* ---------- LOGO ---------- */
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: color 0.2s ease;
+}
+.logo:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- MENU DE NAVEGAÇÃO PRINCIPAL (DESKTOP) ---------- */
+.mainNavMenu {
+  display: flex; /* Visível por padrão em desktop */
+  list-style: none;
+  gap: 2rem;
+  margin: 0; /* Remove margem padrão */
+  padding: 0;
+}
+
+.mainNavMenu li {
+  display: flex;
+  align-items: center;
+}
+
+.mainNavMenu a {
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.mainNavMenu a:hover {
+  color: var(--color-accent);
+}
+
+/* ---------- BOTÃO HAMBURGUER (MOBILE ONLY - Será oculto) ---------- */
+.hamburger {
+  display: none; /* Escondido por padrão em desktop E mobile */
+}
+
+/* ---------- DROPDOWN DO MENU MOBILE (Será oculto, pois o avatar assumirá) ---------- */
+.mobileMenuDropdown {
+  display: none; /* Escondido em todas as situações */
+}
+
+/* ---------- ÁREA DA DIREITA (Tema, Avatar com dropdown, Sair Mobile) ---------- */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espaçamento entre tema, avatar e sair mobile */
+}
+
+/* ---------- BOTÃO DE TEMA ---------- */
+.themeToggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.themeToggle:hover {
+  transform: scale(1.2);
+  color: var(--color-accent);
+}
+
+/* ---------- CONTAINER DO AVATAR E SEU DROPDOWN ---------- */
+.avatarDropdownContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.avatarArea {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.2rem; /* Adiciona um padding para a área clicável */
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+.avatarArea:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ---------- DROPDOWN DO USUÁRIO (perfil/navegação + sair) ---------- */
+.userDropdown {
+  position: absolute;
+  top: 100%; /* Posiciona abaixo do avatar */
+  right: 0;
+  background-color: var(--color-bg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem 0;
+  min-width: 180px; /* Largura ajustada para os links */
+  z-index: 40;
+  animation: slideDown 0.3s ease forwards; /* Adiciona animação de entrada */
+}
+
+.userDropdown a,
+.signOutDropdown {
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.userDropdown a:hover,
+.signOutDropdown:hover {
+  background-color: var(--color-accent-light);
+  color: var(--color-text);
+}
+.signOutDropdown {
+  margin-top: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  color: var(--color-error);
+}
+
+/* ---------- BOTÕES GERAIS (SignIn) ---------- */
+.signIn {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.signIn:hover {
+  transform: translateY(-1px);
+  opacity: 0.85;
+}
+
+/* ---------- BOTÃO SAIR MOBILE (Visível apenas em Mobile no seu JSX original) ---------- */
+.signOutMobile {
+    display: none; /* Este botão será ocultado em todas as situações */
+}
+
+
+/* ============================================== */
+/*             RESPONSIVIDADE (MOBILE)            */
+/* ============================================== */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0.75rem 1rem; /* Ajusta padding para mobile */
+  }
+
+  /* Oculta o menu de navegação principal (mainNavMenu) em mobile */
+  .mainNavMenu {
+    display: none;
+  }
+
+  /* Garante que o hambúrguer e o menu mobile dropdown estejam sempre ocultos */
+  .hamburger,
+  .mobileMenuDropdown {
+    display: none !important;
+  }
+
+  /* Ajusta o espaçamento na área da direita */
+  .right {
+    gap: 0.75rem; /* Menor espaçamento entre tema e avatar */
+  }
+
+  /* O dropdown do usuário agora terá os links de navegação + sair para mobile */
+  .userDropdown {
+    /* No JSX original, este dropdown tem apenas "Ver Perfil" e "Sair" */
+    /* Para incluir Início, Grupos, Amigos, Configurações no mobile, */
+    /* precisaríamos modificar o JSX *dentro* do userDropdown para adicionar esses links condicionalmente. */
+    /* No entanto, como o pedido foi para *manter o JSX*, vou focar em como o CSS gerencia o layout. */
+    /* A funcionalidade de "Início, Grupos..." dentro *deste* dropdown mobile
+       será limitada ao que está no JSX, que é "Ver Perfil" e "Sair".
+       Se você realmente quiser os links de navegação dentro do dropdown do avatar *apenas* em mobile,
+       o JSX precisará ser alterado para renderizar condicionalmente. */
+
+    /* Por enquanto, vamos estilizar o dropdown como se ele *já* tivesse esses links no mobile,
+       mas a inclusão dos links no DOM dependerá do JSX. */
+    min-width: 180px; /* Mantém largura para os links */
+    /* Se a intenção é ter os links de navegação aqui, o JSX do userDropdown precisaria ser assim para mobile:
+       <div className={styles.userDropdown}>
+         <Link href="/dashboard" onClick={closeUserDropdown}>Início</Link>
+         <Link href="/grupos" onClick={closeUserDropdown}>Grupos</Link>
+         ...
+         <button onClick={() => { signOut(); closeUserDropdown(); }} className={styles.signOutDropdown}>Sair</button>
+       </div>
+    */
+  }
+
+  /* Oculta o botão sair que era para mobile, pois o sair está no dropdown do avatar */
+  .signOutMobile {
+      display: none !important;
+  }
+}
+
+/* ---------- ANIMAÇÃO ---------- */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
